@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link href="icons.css" rel="stylesheet">
+		<style>
+			html, body {
+				margin:0px;
+				padding: 0px;
+				height: 100%;
+			}
+			body{
+				background: url('fondo.jpg');
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			
+			.ico{
+				background-color: lightgrey;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			.tooltip {outline:none; }
+			.tooltip strong {line-height:30px;}
+			.tooltip:hover {text-decoration:none;} 
+			.tooltip span {
+				z-index:10;
+				display:none; 
+				padding:5px 10px;
+				margin-top:10px; 
+				line-height:16px;
+				background-color: black;
+			}
+			.tooltip:hover span{
+				display:inline; 
+				position:absolute; 
+				color:#EEE;
+			}
+			.tooltip span {
+				border-radius:2px;        
+				box-shadow: 0px 0px 3px 3px #000;
+			}
+		</style>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script>
+			function toogleIco(ico){
+				var tipo = $("#ico_"+ico).html();
+				switch (ico){
+					case 'wifi':
+						if (tipo == "wifi")	$("#ico_"+ico).html("signal_wifi_off");
+						else $("#ico_"+ico).html("wifi");
+					break;
+					case 'volume':
+						if (tipo == "volume_up") $("#ico_"+ico).html("volume_off");
+						else $("#ico_"+ico).html("volume_up");
+					break;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<header>
+			<span class="tooltip">
+				<i class="ico material-icons" id="ico_wifi" onclick="toogleIco('wifi')">wifi</i>
+				<span>Most Light-weight Tooltip</span>
+			</span>
+			<span class="tooltip">
+				<i class="ico material-icons" id="ico_volume" onclick="toogleIco('volume')">volume_up</i>
+				<span>Most Light-weight Tooltip</span>
+			</span>
+		</header>
+		<section>
+			
+		</section>
+		<footer>
+			
+		</footer>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	</body>
+</html>
