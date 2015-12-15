@@ -1,0 +1,88 @@
+/*MATERIAL ICONS*/
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/material-icons/MaterialIcons-Regular.eot'); /* For IE6-8 */
+	src: local('fonts/material-icons/Material Icons'),
+		local('fonts/material-icons/MaterialIcons-Regular'),
+		url('fonts/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+		url('fonts/material-icons/MaterialIcons-Regular.woff') format('woff'),
+		url('fonts/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+}
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+}
+.material-icons.large{
+	font-size: 50px;
+}
+.material-icons.medium{
+	font-size: 30px;
+}
+.material-icons.small{
+	font-size: 10px;
+}
+/*ROBOTO*/
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Thin), 
+		url("fonts/roboto/Roboto-Thin.woff2") format("woff2"), 
+		url("fonts/roboto/Roboto-Thin.woff") format("woff"),
+		url("fonts/roboto/Roboto-Thin.ttf") format("truetype");
+	font-weight: 200; 
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Light), 
+		url("fonts/roboto/Roboto-Light.woff2") format("woff2"), 
+		url("fonts/roboto/Roboto-Light.woff") format("woff"), 
+		url("fonts/roboto/Roboto-Light.ttf") format("truetype");
+	font-weight: 300; 
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: local(Roboto Regular), 
+		url("fonts/roboto/Roboto-Regular.woff2") format("woff2"), 
+		url("fonts/roboto/Roboto-Regular.woff") format("woff"), 
+		url("fonts/roboto/Roboto-Regular.ttf") format("truetype");
+	font-weight: 400; 
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url("fonts/roboto/Roboto-Medium.woff2") format("woff2"), 
+		url("fonts/roboto/Roboto-Medium.woff") format("woff"), 
+		url("fonts/roboto/Roboto-Medium.ttf") format("truetype");
+	font-weight: 500; 
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url("fonts/roboto/Roboto-Bold.woff2") format("woff2"), 
+		url("fonts/roboto/Roboto-Bold.woff") format("woff"), 
+		url("fonts/roboto/Roboto-Bold.ttf") format("truetype");
+	font-weight: 700; 
+}

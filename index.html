@@ -2,133 +2,71 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link href="icons.css" rel="stylesheet">
-		<style>
-			html, body {
-				margin:0px;
-				padding: 0px;
-				height: 100%;
-				font-family: Arial, sans-serif;
-			}
-			body{
-				background: url('fondo.jpg');
-				background-size: cover;
-				background-repeat: no-repeat;
-			}
-			header{
-				height: 15%;
-			}
-			section{
-				height: 70%;
-				margin: 0px 10% 0px 10%;
-			}
-			section .col{
-				width: 20%;
-				height: 60%;
-				padding: 3% 0 3% 0;
-				float: left;
-				text-align: center;
-				color: white;
-				text-shadow: 0px 0px 5px black;
-			}
-			section .col.t2{
-				width: 40%;
-			}
-			section .col .row {
-				height: 50%;
-			}
-			section .col .title{
-				font-size: 2.5vh;
-				margin-top: 50%;
-			}
-			section .col .content{
-				font-size: 9vh;
-			}
-			section .col .simbol{
-				font-size: 5vh;
-			}
-			footer{
-				height: 15%;
-				background: linear-gradient(rgba(200, 200, 255, 0.8), white);
-				border-radius: 20px 20px 0px 0px;
-			}
-			.ico{
-				background-color: lightgrey;
-				border-radius: 5px;
-				cursor: pointer;
-			}
-			.temperature{
-				border-bottom: 2px solid black;
-				font-size: 20vh;
-			}
-			#time{
-				font-size: 10vh;
-				font-weight: bold;
-				text-shadow: 0px 0px 2px black;
-			}
-			#date{
-				font-size: 3vh;
-				font-weight: bold;
-				text-shadow: 0px 0px 2px black;
-			}
-			@media screen and (min-width: 801px){
-				.ico{
-					background-color: lightgrey;
-					border-radius: 5px;
-					cursor: pointer;
-					font-size: 3rem;
-				}
-				section .col .title{
-					font-size: 3vh;
-					margin-top: 40%;
-				}
-			}
-			@media screen and (max-width: 799px){
-				.ico{
-					background-color: lightgrey;
-					border-radius: 5px;
-					cursor: pointer;
-					font-size: 1rem;
-				}
-				section .col{
-					height: 40%;
-				}
-				section .col.first {
-					margin-left: 20%;
-				}
-				section .col.t2{
-					width: 100%;
-				}
-				section .col .row {
-					height: 30%;
-				}
-				section .col .title{
-					font-size: 2.5vw;
-					margin-top: 50%;
-				}
-				section .col .content{
-					font-size: 3vh;
-				}
-				section .col .simbol{
-					font-size: 2vh;
-				}
-				.temperature{
-					border-bottom: 2px solid black;
-					font-size: 8.5vh;
-				}
-				#time{
-					font-size: 5vh;
-					font-weight: bold;
-					text-shadow: 0px 0px 2px black;
-				}
-				#date{
-					font-size: 2vh;
-					font-weight: bold;
-					text-shadow: 0px 0px 2px black;
-				}
-			}
-		</style>
+		<link href="fonts.css" rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<i class="ico material-icons" id="ico_wifi" onclick="toogleIco('wifi')">wifi</i>
+			<i class="ico material-icons" id="ico_volume" onclick="toogleIco('volume')">volume_up</i>
+			<i class="ico material-icons" id="ico_notifications" onclick="toast('PROBANDOOOOOoooo', 3000)">notifications_none</i>
+		</header>
+		<section id="changelayer">
+			<div class="col t2">
+				<div class="row temperature">
+					<span id="ext_temp"></span><span class="simbol">&ring;C</span>
+				</div>
+				<div class="row">
+					<div id="time">18:58:</div><div id="date"></div>
+				</div>
+			</div>
+			<div class="col first">
+				<h3 class="title"><i class="material-icons medium" id="ico_wifi">invert_colors</i><br>Frigorifico</h3>
+				<div class="content"><span id="frig_temp"></span><span class="simbol">&ring;C</span></div>
+			</div>
+			<div class="col">
+				<h3 class="title"><i class="material-icons medium" id="ico_wifi">ac_unit</i><br>Congelador</h3>
+				<div class="content"><span id="cong_temp"></span><span class="simbol">&ring;C</span></div>
+			</div>
+			<div class="col">
+				<h3 class="title"><i class="material-icons medium" id="ico_wifi">flash_on</i><br>Energia</h3>
+				<div class="content"><span id="energy">100</span><span class="simbol">W</span></div>
+			</div>
+		</section>
+		<footer>
+			
+		</footer>
+		<div id="toast">Probando un toast</div>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<script type="text/javascript" src="electro.js"></script>
 		<script>
+			function digiDate(){
+				var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+				var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+				var f=new Date();
+				$("#date").html(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+			}
+			function digiClock() {
+				var crTime = new Date();
+				var crHrs = crTime.getHours();
+				var crMns = crTime.getMinutes();
+				var crScs = crTime.getSeconds();
+				crMns = (crMns < 10 ? "0" : "") + crMns;
+				crScs = (crScs < 10 ? "0" : "") + crScs;
+				var timeOfDay = (crHrs < 12) ? "AM" : "PM";
+				crHrs = (crHrs > 12) ? crHrs - 12 : crHrs;
+				crHrs = (crHrs == 0) ? 12 : crHrs;
+				var crTimeString = crHrs + ":" + crMns + ":" + crScs;
+				$("#time").html(crTimeString);
+				if (crHrs == 0 && crMns == 0 && crScs == 0){
+					digiDate();
+				}
+			}
+			function toast(msg, time){
+				$("#toast").html(msg);
+				$("#toast").show("fast");
+				setTimeout(function() {$("#toast").hide("fast");}, time);
+			}
 			function toogleIco(ico){
 				var tipo = $("#ico_"+ico).html();
 				switch (ico){
@@ -142,45 +80,23 @@
 					break;
 				}
 			}
-		</script>
-	</head>
-	<body>
-		<header>
-			<i class="ico material-icons" id="ico_wifi" onclick="toogleIco('wifi')">wifi</i>
-			<i class="ico material-icons" id="ico_volume" onclick="toogleIco('volume')">volume_up</i>
-			<i class="ico material-icons" id="ico_notifications" onclick="">notifications_none</i>
-		</header>
-		<section id="changelayer">
-			<div class="col t2">
-				<div class="row temperature">
-					<span id="ext_temp">20</span><span class="simbol">&ring;C</span>
-				</div>
-				<div class="row">
-					<div id="time">18:58:</div><div id="date"></div>
-				</div>
-			</div>
-			<div class="col first">
-				<h3 class="title"><i class="material-icons medium" id="ico_wifi">invert_colors</i><br>Frigorifico</h3>
-				<div class="content"><span>10</span><span class="simbol">&ring;C</span></div>
-			</div>
-			<div class="col">
-				<h3 class="title"><i class="material-icons medium" id="ico_wifi">ac_unit</i><br>Congelador</h3>
-				<div class="content"><span>-10</span><span class="simbol">&ring;C</span></div>
-			</div>
-			<div class="col">
-				<h3 class="title"><i class="material-icons medium" id="ico_wifi">flash_on</i><br>Energia</h3>
-				<div class="content"><span>100</span><span class="simbol">W</span></div>
-			</div>
-		</section>
-		<footer>
-			
-		</footer>
-		<script type="text/javascript" src="jquery.min.js"></script>
-		<script>
-			var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-			var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
-			var f=new Date();
-			$("#date").html(diasSemana[f.getDay()] + ", " + f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear());
+			function changeExtTemp(temp){
+				$("#ext_temp").html(temp);
+			}
+			function changeFrigTemp(temp){
+				$("#frig_temp").html(Math.round(temp));
+			}
+			function changeCongTemp(temp){
+				$("#cong_temp").html(Math.round(temp));
+			}
+			electro.tempExterior(changeExtTemp);
+			electro.tempFrigorifico(changeFrigTemp);
+			electro.tempCongelador(changeCongTemp);
+			$(document).ready(function(){
+				digiDate();
+				digiClock()
+				setInterval('digiClock()', 1000);
+			});
 		</script>
 	</body>
 </html>
