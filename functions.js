@@ -1,21 +1,33 @@
 var energyCong = 0, energyFrig = 0;
 var objfrigo, objconge;
-var tempfrigo = 4, tempconge = -4;
-var puertafrig = false, puertacong = false;
+var tempfrigo = 4, tempconge = -20;
+var puertafrig = false, puertacong = false, frigoon = true, congeon = true;
+function toggleFrigo(){
+	if (frigoon) frigoon = false;
+	else frigoon = true;
+}
+function toggleCong(){
+	if (congeon) congeon = false;
+	else congeon = true;
+}
 function changeFrigDoorStatus(status){
 	if (status){
 		objfrigo = toast("Puerta del frigorifico abierta", 0);
 		electro.motorFrigorifico(false);
+		puertafrig = true;
 	} else {
 		if (objfrigo) toast("Puerta del frigorifico cerrada", 2000, objfrigo);
+		puertafrig = false;
 	}
 }
 function changeCongDoorStatus(status){
 	if (status){
 		objconge = toast("Puerta del congelador abierta", 0);
 		electro.motorCongelador(false);
+		puertacong = true;
 	} else {
 		if (objconge) toast("Puerta del congelador cerrada", 2000, objconge);
+		puertacong = false;
 	}
 }
 function changeTotalEnergy(){
@@ -84,11 +96,11 @@ function changeExtTemp(temp){
 }
 function changeFrigTemp(temp){
 	$("#frig_temp").html(Math.round(temp));
-	if (temp > tempfrigo) electro.motorFrigorifico(true);
+	if (temp > tempfrigo && !puertafrig && frigoon) electro.motorFrigorifico(true);
 	else if (temp < tempfrigo) electro.motorFrigorifico(false);
 }
 function changeCongTemp(temp){
 	$("#cong_temp").html(Math.round(temp));
-	if (temp > tempconge) electro.motorCongelador(true);
+	if (temp > tempconge && !puertacong && congeon) electro.motorCongelador(true);
 	else if (temp < tempconge)  electro.motorCongelador(false);
 }
