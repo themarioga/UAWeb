@@ -1,28 +1,58 @@
 var energyCong = 0, energyFrig = 0;
 var objfrigo, objconge;
-var tempfrigo = 4, tempconge = -20;
-var puertafrig = false, puertacong = false, frigoon = false, congeon = false;
+var prevTempFrigo, prevTempConge;
+var tempfrigo = 2, tempconge = -20;
+var puertafrig = false, puertacong = false, frigoon = false, congeon = false, ecoon = false;
 function toggleFrigo(){
 	if (frigoon) {
 		frigoon = false;
-		$("#frigo-btn").css("color", "#444444");
+		$("#frigo-btn .b-large").css("color", "#444444");
+		$("#frigo-btn .infotext").html("OFF");
 		toast("Apagando frigorifico", 2000);
 	} else {
 		frigoon = true;
-		$("#frigo-btn").css("color", "green");
+		$("#frigo-btn .b-large").css("color", "green");
+		$("#frigo-btn .infotext").html("ON");
 		toast("Encendiendo frigorifico", 2000);
 	}
 }
 function toggleCong(){
 	if (congeon) {
 		congeon = false;
-		$("#conge-btn").css("color", "#444444");
+		$("#conge-btn .b-large").css("color", "#444444");
+		$("#conge-btn .infotext").html("OFF");
 		toast("Apagando congelador", 2000);
 	} else {
 		congeon = true;
-		$("#conge-btn").css("color", "green");
+		$("#conge-btn .b-large").css("color", "green");
+		$("#conge-btn .infotext").html("ON");
 		toast("Encendiendo congelador", 2000);
 	}
+}
+function toggleEco(){
+	if (ecoon) {
+		ecoon = false;
+		$("#eco-btn .b-large").css("color", "#444444");
+		$("#eco-btn .infotext").html("ECO OFF");
+		changeDefaultTempFrigo(prevTempFrigo);
+		changeDefaultTempConge(prevTempConge);
+		toast("Desactivado modo ECO", 2000);
+	} else {
+		ecoon = true;
+		$("#eco-btn .b-large").css("color", "green");
+		$("#eco-btn .infotext").html("ECO ON");
+		changeDefaultTempFrigo(4);
+		changeDefaultTempConge(-18);
+		toast("Activado modo ECO", 2000);
+	}
+}
+function changeDefaultTempFrigo(temp){
+	prevTempFrigo=tempfrigo;
+	tempfrigo=temp;
+}
+function changeDefaultTempConge(temp){
+	prevTempConge=tempconge;
+	tempconge=temp;
 }
 function changeFrigDoorStatus(status){
 	if (status){
