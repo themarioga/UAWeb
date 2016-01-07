@@ -1,14 +1,28 @@
 var energyCong = 0, energyFrig = 0;
 var objfrigo, objconge;
 var tempfrigo = 4, tempconge = -20;
-var puertafrig = false, puertacong = false, frigoon = true, congeon = true;
+var puertafrig = false, puertacong = false, frigoon = false, congeon = false;
 function toggleFrigo(){
-	if (frigoon) frigoon = false;
-	else frigoon = true;
+	if (frigoon) {
+		frigoon = false;
+		$("#frigo-btn").css("color", "#444444");
+		toast("Apagando frigorifico", 2000);
+	} else {
+		frigoon = true;
+		$("#frigo-btn").css("color", "green");
+		toast("Encendiendo frigorifico", 2000);
+	}
 }
 function toggleCong(){
-	if (congeon) congeon = false;
-	else congeon = true;
+	if (congeon) {
+		congeon = false;
+		$("#conge-btn").css("color", "#444444");
+		toast("Apagando congelador", 2000);
+	} else {
+		congeon = true;
+		$("#conge-btn").css("color", "green");
+		toast("Encendiendo congelador", 2000);
+	}
 }
 function changeFrigDoorStatus(status){
 	if (status){

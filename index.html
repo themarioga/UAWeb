@@ -13,30 +13,37 @@
 			<i class="ico material-icons" id="ico_notifications" style="cursor: default">notifications_none</i>
 		</header>
 		<section id="changelayer">
-			<div class="col t2">
-				<div class="row temperature">
-					<span id="ext_temp"></span><span class="simbol">&ring;C</span>
+			<div class="legible">
+				<div class="col t2">
+					<div class="row temperature">
+						<span id="ext_temp"></span><span class="simbol">&ring;C</span>
+					</div>
+					<div class="row">
+						<div id="time"></div><div id="date"></div>
+					</div>
 				</div>
-				<div class="row">
-					<div id="time"></div><div id="date"></div>
+				<div class="col first">
+					<h3 class="title"><i class="material-icons medium" id="ico_wifi">invert_colors</i><br>Frigorifico</h3>
+					<div class="content"><span id="frig_temp"></span><span class="simbol">&ring;C</span></div>
 				</div>
-			</div>
-			<div class="col first">
-				<h3 class="title"><i class="material-icons medium" id="ico_wifi">invert_colors</i><br>Frigorifico</h3>
-				<div class="content"><span id="frig_temp"></span><span class="simbol">&ring;C</span></div>
-			</div>
-			<div class="col">
-				<h3 class="title"><i class="material-icons medium" id="ico_wifi">ac_unit</i><br>Congelador</h3>
-				<div class="content"><span id="cong_temp"></span><span class="simbol">&ring;C</span></div>
-			</div>
-			<div class="col">
-				<h3 class="title"><i class="material-icons medium" id="ico_wifi">flash_on</i><br>Consumo</h3>
-				<div class="content"><span id="energy"></span><span id="energysimbol" class="simbol">W</span></div>
+				<div class="col">
+					<h3 class="title"><i class="material-icons medium" id="ico_wifi">ac_unit</i><br>Congelador</h3>
+					<div class="content"><span id="cong_temp"></span><span class="simbol">&ring;C</span></div>
+				</div>
+				<div class="col">
+					<h3 class="title"><i class="material-icons medium" id="ico_wifi">flash_on</i><br>Consumo</h3>
+					<div class="content"><span id="energy"></span><span id="energysimbol" class="simbol">W</span></div>
+				</div>
+				<div id="clear" style="clear:both;"></div>
 			</div>
 		</section>
 		<footer>
-			<div class="button">
-				
+			<div class="foo-container">
+				<div class="button"><i class="material-icons b-large" onclick="toggleFrigo()" id="frigo-btn">invert_colors</i></div>
+				<div class="button"><i class="material-icons b-large" onclick="toggleCong()" id="conge-btn">ac_unit</i></div>
+				<div class="button"><i class="material-icons b-large" onclick="toogleCooler()">invert_colors</i></div>
+				<div class="button"><i class="material-icons b-large" onclick="toogleCooler()">invert_colors</i></div>
+				<div class="button"><i class="material-icons b-large" onclick="toogleCooler()">invert_colors</i></div>
 			</div>
 		</footer>
 		<script type="text/javascript" src="jquery.min.js"></script>
@@ -44,14 +51,13 @@
 		<script type="text/javascript" src="functions.js"></script>
 		<script>
 		/**ToDo: Menu de abajo
-			Boton Apagar/Encender Frigorifico
-			Boton Apagar/Encender Congelador
 			Boton cambiar temperatura Frigorifico
 			Boton cambiar temperatura Congelador
 			Boton cambiar idioma
 		*/
 		//ToDo?: Sistema celsius a farengheit
 		//ToDo?: Integrar twitter
+		$(document).ready(function(){
 			electro.puertaFrigorifico(changeFrigDoorStatus);
 			electro.puertaCongelador(changeCongDoorStatus);
 			electro.consumoFrigorifico(changeFrigEnergy);
@@ -60,6 +66,9 @@
 			electro.tempFrigorifico(changeFrigTemp);
 			electro.tempCongelador(changeCongTemp);
 			electro.hora(digiDateTime);
+			toggleFrigo();
+			toggleCong();
+		});
 		</script>
 	</body>
 </html>

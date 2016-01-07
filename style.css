@@ -27,6 +27,7 @@ section .col{
 }
 section .col.t2{
 	width: 40%;
+	margin-bottom: 2%;
 }
 section .col .row {
 	height: 50%;
@@ -43,8 +44,29 @@ section .col .simbol{
 }
 footer{
 	height: 15%;
+	text-align: center;
+}
+.foo-container{
 	background: linear-gradient(rgba(200, 200, 255, 0.8), white);
 	border-radius: 20px 20px 0px 0px;
+	display: inline-block;
+	padding: 0 3% 0 3%;
+    height: 100%;
+}
+.button{
+	position: relative;
+	display:inline-block;
+	top: 0.5vh;
+	height: 13vh;
+	max-height: 15vw;
+	width: 13vh;
+	max-width: 15vw;
+	margin: auto;
+	padding: 3px;
+	border: 1px solid grey;
+	background-color: rgba(50, 50, 50, 0.5);
+	border-radius: 5px;
+	cursor: pointer;
 }
 .ico{
 	background-color: lightgrey;
@@ -76,13 +98,13 @@ footer{
 	border-radius: 10px;
 	display: none;
 }
-.button{
-	height: 80%;
-	width: 5%;
-	margin: auto;
-	padding: 3px;
-	border: 1px solid black;
-	border-radius: 5px;
+.legible{
+	background-color: rgba(50, 50, 50, 0.5);
+	border-radius: 15px;
+}
+.material-icons.b-large{
+	font-size: 13vh;
+	color: #444444;
 }
 @media screen and (min-width: 801px){
 	.ico{
@@ -121,18 +143,20 @@ footer{
 		margin-top: 50%;
 	}
 	section .col .content{
-		font-size: 3vh;text-shadow:
+		font-size: 3vh;
+		/*text-shadow:
 	   -1px -1px 0 #000,
 		1px -1px 0 #000,
 	   -1px 1px 0 #000,
-		1px 1px 0 #000;
+		1px 1px 0 #000;*/
 	}
 	section .col .simbol{
-		font-size: 2vh;text-shadow:
+		font-size: 2vh;
+		/*text-shadow:
 	   -1px -1px 0 #000,
 		1px -1px 0 #000,
 	   -1px 1px 0 #000,
-		1px 1px 0 #000;
+		1px 1px 0 #000;*/
 	}
 	.temperature{
 		border-bottom: 2px solid black;
@@ -147,5 +171,20 @@ footer{
 		font-size: 2vh;
 		font-weight: bold;
 		text-shadow: 0px 0px 2px black;
+	}
+	.button{
+		padding: 1px;
+	}
+	.foo-container{
+		max-height: 17.5vw;
+	}
+	footer{
+		position: absolute;
+		width: 100%;
+		bottom: 0px;
+		max-height: 17.5vw;
+	}
+	.material-icons.b-large{
+		font-size: 8.5vh;
 	}
 }
