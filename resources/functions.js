@@ -1,8 +1,8 @@
 var energyCong = 0, energyFrig = 0;
-var objfrigo, objconge;
+var objFrigo, objConge;
 var prevTempFrigo, prevTempConge, prevTermo;
-var tempfrigo = 4, tempconge = -18;
-var puertafrig = false, puertacong = false, frigoon = false, congeon = false, ecoon = false;
+var tempFrigo = 4, tempConge = -18;
+var puertaFrigo = false, puertaConge = false, frigoon = false, congeon = false, ecoon = false;
 function toggleFrigo(){
 	if (frigoon) {
 		frigoon = false;
@@ -34,7 +34,9 @@ function toggleEco(){
 		ecoon = false;
 		$("#eco-btn .b-large").css("color", "#444444");
 		$("#eco-btn .infotext").html("ECO OFF");
+		document.getElementById('frigotermo-range').noUiSlider.set(prevTempFrigo);
 		changeDefaultTempFrigo(prevTempFrigo);
+		document.getElementById('congetermo-range').noUiSlider.set(prevTempConge);
 		changeDefaultTempConge(prevTempConge);
 		toast("Desactivado modo ECO", 2000);
 	} else {
@@ -42,7 +44,9 @@ function toggleEco(){
 		$("#eco-btn .b-large").css("color", "green");
 		$("#eco-btn .infotext").html("ECO ON");
 		changeDefaultTempFrigo(8);
+		document.getElementById('frigotermo-range').noUiSlider.set(8);
 		changeDefaultTempConge(-16);
+		document.getElementById('congetermo-range').noUiSlider.set(-16);
 		toast("Activado modo ECO", 2000);
 	}
 }
@@ -60,31 +64,31 @@ function toogleIco(ico){
 	}
 }
 function changeDefaultTempFrigo(temp){
-	prevTempFrigo=tempfrigo;
-	tempfrigo=temp;
+	prevTempFrigo=tempFrigo;
+	tempFrigo=temp;
 }
 function changeDefaultTempConge(temp){
-	prevTempConge=tempconge;
-	tempconge=temp;
+	prevTempConge=tempConge;
+	tempConge=temp;
 }
 function changeFrigDoorStatus(status){
 	if (status){
-		objfrigo = toast("Puerta del frigorifico abierta", 0);
+		objFrigo = toast("Puerta del frigorifico abierta", 0);
 		electro.motorFrigorifico(false);
-		puertafrig = true;
+		puertaFrigo = true;
 	} else {
-		if (objfrigo) toast("Puerta del frigorifico cerrada", 2000, objfrigo);
-		puertafrig = false;
+		if (objFrigo) toast("Puerta del frigorifico cerrada", 2000, objFrigo);
+		puertaFrigo = false;
 	}
 }
 function changeCongDoorStatus(status){
 	if (status){
-		objconge = toast("Puerta del congelador abierta", 0);
+		objConge = toast("Puerta del congelador abierta", 0);
 		electro.motorCongelador(false);
-		puertacong = true;
+		puertaConge = true;
 	} else {
-		if (objconge) toast("Puerta del congelador cerrada", 2000, objconge);
-		puertacong = false;
+		if (objConge) toast("Puerta del congelador cerrada", 2000, objConge);
+		puertaConge = false;
 	}
 }
 function changeTotalEnergy(){
@@ -107,13 +111,13 @@ function changeExtTemp(temp){
 }
 function changeFrigTemp(temp){
 	$("#frig_temp").html(Math.round(temp));
-	if (temp > tempfrigo && !puertafrig && frigoon) electro.motorFrigorifico(true);
-	else if (temp < tempfrigo) electro.motorFrigorifico(false);
+	if (temp > tempFrigo && !puertaFrigo && frigoon) electro.motorFrigorifico(true);
+	else if (temp < tempFrigo) electro.motorFrigorifico(false);
 }
 function changeCongTemp(temp){
 	$("#cong_temp").html(Math.round(temp));
-	if (temp > tempconge && !puertacong && congeon) electro.motorCongelador(true);
-	else if (temp < tempconge)  electro.motorCongelador(false);
+	if (temp > tempConge && !puertaConge && congeon) electro.motorCongelador(true);
+	else if (temp < tempConge)  electro.motorCongelador(false);
 }
 function frigo_bubble(){
 	bubble("frigotermo");
@@ -188,6 +192,14 @@ function range(id, start, min, max){
 		pips: { // Show a scale with the slider
 			mode: 'steps',
 			density: 2
+		}
+	}).on('update', function(){
+		if (id=="frigotermo"){
+			//prevTempFrigo = tempFrigo;
+			tempFrigo=this.get();
+		} else if (id=="congetermo"){
+			//prevTempConge = tempConge;
+			tempConge=this.get();
 		}
 	});
 }
