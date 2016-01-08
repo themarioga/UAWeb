@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link href="fonts.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet">
+		<link href="resources/fonts.css" rel="stylesheet">
+		<link href="resources/style.css" rel="stylesheet">
+		<link href="resources/nouislider.min.css" rel="stylesheet">
 		<title>Frigorifico</title>
 	</head>
 	<body>
@@ -39,26 +40,40 @@
 		</section>
 		<footer>
 			<div class="foo-container">
-				<div class="button" id="frigo-btn"><i class="material-icons b-large" onclick="toggleFrigo()">invert_colors</i><div class="infotext">OFF</div></div>
-				<div class="button" id="conge-btn"><i class="material-icons b-large" onclick="toggleCong()">ac_unit</i><div class="infotext">OFF</div></div>
-				<div class="button" id="eco-btn"><i class="material-icons b-large" style="" onclick="toggleEco()">kitchen</i><div class="infotext">ECO OFF</div></div>
-				<div class="button"><i class="material-icons b-large" onclick="toogleCooler()">invert_colors</i></div>
-				<div class="button"><i class="material-icons b-large" onclick="toogleCooler()">invert_colors</i></div>
-				<div class="button"><i class="material-icons b-large" onclick="toogleCooler()">invert_colors</i></div>
+				<div class="button" id="frigo-btn" onclick="toggleFrigo()"><i class="material-icons b-large">invert_colors</i><div class="infotext">OFF</div></div>
+				<div class="button" id="conge-btn" onclick="toggleCong()"><i class="material-icons b-large">ac_unit</i><div class="infotext">OFF</div></div>
+				<div class="button" id="eco-btn" onclick="toggleEco()"><i class="material-icons b-large" style="">kitchen</i><div class="infotext">ECO OFF</div></div>
+				<div class="button" id="frigotermo-btn" onclick="frigo_bubble()"><i class="material-icons b-large">invert_colors</i><div class="infotext">TEMP</div></div>
+				<div class="button" id="congetermo-btn" onclick="conge_bubble()"><i class="material-icons b-large">ac_unit</i><div class="infotext">TEMP</div></div>
+				<div class="button" id="lang-btn" onclick="toogleCooler()"><i class="material-icons b-large">language</i><div class="infotext">IDIOMA</div></div>
 			</div>
 		</footer>
-		<script type="text/javascript" src="jquery.min.js"></script>
-		<script type="text/javascript" src="electro.js"></script>
-		<script type="text/javascript" src="functions.js"></script>
+		<div id="bubble"><div id="frigotermo-range" class="range"></div><div id="congetermo-range" class="range"></div></div>
+		<div id="toast-container"></div>
+		<script type="text/javascript" src="resources/jquery.min.js"></script>
+		<script type="text/javascript" src="resources/nouislider.min.js"></script>
+		<script type="text/javascript" src="resources/electro.js"></script>
+		<script type="text/javascript" src="resources/functions.js"></script>
 		<script>
 		/**ToDo: Menu de abajo
-			Boton cambiar temperatura Frigorifico
-			Boton cambiar temperatura Congelador
-			Boton cambiar idioma
+			Bubble cambiar temperatura Frigorifico (Funcionalidad)
+			Bubble cambiar temperatura Congelador
+			Bubble cambiar idioma
 		*/
+		//ToDo: Alarma
 		//ToDo?: Sistema celsius a farengheit
 		//ToDo?: Integrar twitter
 		$(document).ready(function(){
+			$(document).click(function(event){
+				if(prevTermo != "" && !$(event.target).is('#bubble') && !$(event.target).parents("#bubble").is("#bubble") && !$(event.target).is('.button') && !$(event.target).parents(".button").is(".button")) {
+					$("#bubble").hide();
+					prevTermo = "";
+				}
+			});
+			$( window ).resize(function() {
+				$("#bubble").hide();
+				prevTermo = "";
+			});
 			electro.puertaFrigorifico(changeFrigDoorStatus);
 			electro.puertaCongelador(changeCongDoorStatus);
 			electro.consumoFrigorifico(changeFrigEnergy);
@@ -69,6 +84,8 @@
 			electro.hora(digiDateTime);
 			toggleFrigo();
 			toggleCong();
+			range("frigotermo", 4, 2, 8);
+			range("congetermo", -18, -16, -24);
 		});
 		</script>
 	</body>
