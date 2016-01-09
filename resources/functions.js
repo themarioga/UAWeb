@@ -95,11 +95,11 @@ function changeCongDoorStatus(status){
 		if (!puertaFrigo) timeOutConge=setTimeout(function(){dialog("La puerta del congelador lleva demasiado tiempo abierta. Por favor cierrela.");electro.alarma(true);}, 15000);
 	} else {
 		if (objConge) toast("Puerta del congelador cerrada", 2000, objConge);
-		puertaConge = false;
 		if (puertaConge) {
 			clearTimeout(timeOutConge);
 			electro.alarma(false);
 		}
+		puertaConge = false;
 	}
 }
 function changeTotalEnergy(){
