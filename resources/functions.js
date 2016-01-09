@@ -193,25 +193,20 @@ function range(id, start, min, max){
 	var slider = document.getElementById(id+'-range');
 	noUiSlider.create(slider, {
 		start: [ start ],
-		step: 1, // Slider moves in increments of '10'
-		direction: 'rtl', // Put '0' at the bottom of the slider
-		orientation: 'vertical', // Orient the slider vertically
-		range: { // Slider can select '0' to '100'
+		step: 1, 
+		direction: 'rtl', 
+		orientation: 'vertical',
+		range: { 
 			'min': min,
 			'max': max
 		},
-		pips: { // Show a scale with the slider
+		pips: { 
 			mode: 'steps',
 			density: 2
 		}
 	}).on('update', function(){
-		if (id=="frigotermo"){
-			//prevTempFrigo = tempFrigo;
-			tempFrigo=this.get();
-		} else if (id=="congetermo"){
-			//prevTempConge = tempConge;
-			tempConge=this.get();
-		}
+		if (id=="frigotermo") tempFrigo=this.get();
+		else if (id=="congetermo")tempConge=this.get();
 	});
 }
 function dialog(texto){
