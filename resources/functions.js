@@ -1,5 +1,6 @@
-var energyCong = 0, energyFrig = 0;
+var energyFrig = 0, energyCong = 0;
 var objFrigo, objConge;
+var timeOutFrigo, timeOutConge;
 var prevTempFrigo, prevTempConge, prevTermo;
 var tempFrigo = 4, tempConge = -18;
 var puertaFrigo = false, puertaConge = false, frigoon = false, congeon = false, ecoon = false;
@@ -76,8 +77,13 @@ function changeFrigDoorStatus(status){
 		objFrigo = toast("Puerta del frigorifico abierta", 0);
 		electro.motorFrigorifico(false);
 		puertaFrigo = true;
+		if (!puertaConge) timeOutFrigo=setTimeout(function(){dialog("La puerta del frigorifico lleva demasiado tiempo abierta. Por favor cierrela."); electro.alarma(true);}, 15000);
 	} else {
 		if (objFrigo) toast("Puerta del frigorifico cerrada", 2000, objFrigo);
+		if (puertaFrigo) {
+			clearTimeout(timeOutFrigo);
+			electro.alarma(false);
+		}
 		puertaFrigo = false;
 	}
 }
@@ -86,9 +92,14 @@ function changeCongDoorStatus(status){
 		objConge = toast("Puerta del congelador abierta", 0);
 		electro.motorCongelador(false);
 		puertaConge = true;
+		if (!puertaFrigo) timeOutConge=setTimeout(function(){dialog("La puerta del congelador lleva demasiado tiempo abierta. Por favor cierrela.");electro.alarma(true);}, 15000);
 	} else {
 		if (objConge) toast("Puerta del congelador cerrada", 2000, objConge);
 		puertaConge = false;
+		if (puertaConge) {
+			clearTimeout(timeOutConge);
+			electro.alarma(false);
+		}
 	}
 }
 function changeTotalEnergy(){
@@ -121,13 +132,13 @@ function changeCongTemp(temp){
 }
 function frigo_bubble(){
 	bubble("frigotermo");
-	$("#congetermo-range").hide();
-	$("#frigotermo-range").show();
+	$("#congetermo-range").hide("fast");
+	$("#frigotermo-range").show("fast");
 }
 function conge_bubble(){
 	bubble("congetermo");
-	$("#frigotermo-range").hide();
-	$("#congetermo-range").show();
+	$("#frigotermo-range").hide("fast");
+	$("#congetermo-range").show("fast");
 }
 function digiDateTime(date){
 	digiDate(date);
@@ -171,9 +182,9 @@ function bubble(id){
 	}
 	var posleft = $("#"+id+"-btn").offset().left-$("#"+id+"-btn").width()/2+correccion;
 	$("#bubble").css("left", posleft);
-	if ($("#bubble").css("display") == "none") $("#bubble").show();
+	if ($("#bubble").css("display") == "none") $("#bubble").show("fast");
 	else if (id == prevTermo) {
-		$("#bubble").hide();
+		$("#bubble").hide("fast");
 		id = "";
 	}
 	prevTermo = id;
@@ -202,4 +213,8 @@ function range(id, start, min, max){
 			tempConge=this.get();
 		}
 	});
+}
+function dialog(texto){
+	$("#dialog-content").html(texto);
+	$(".dialog-background").show("fast");
 }
