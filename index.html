@@ -56,14 +56,11 @@
 		<script type="text/javascript" src="resources/electro.js"></script>
 		<script type="text/javascript" src="resources/functions.js"></script>
 		<script>
-		/**ToDo: Menu de abajo
-			Bubble cambiar temperatura Frigorifico (Funcionalidad)
-			Bubble cambiar temperatura Congelador
-			Bubble cambiar idioma
-		*/
-		//ToDo: Mostrar dialog para Alarma
-		//ToDo?: Sistema celsius a farengheit
-		//ToDo?: Integrar twitter
+		//ToDo: Bubble cambiar idioma
+		//ToDo: Alarma no pita, y no se desactiva si cierras
+		//ToDo: Estadisticas
+		//¿ToDo?: Sistema celsius a farengheit
+		//¿ToDo?: Integrar twitter
 		$(document).ready(function(){
 			$(document).click(function(event){
 				if(prevTermo != "" && !$(event.target).is('#bubble') && !$(event.target).parents("#bubble").is("#bubble") && !$(event.target).is('.button') && !$(event.target).parents(".button").is(".button")) {
