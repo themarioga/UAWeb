@@ -82,6 +82,7 @@ function changeFrigDoorStatus(status){
 		if (objFrigo) toast("Puerta del frigorifico cerrada", 2000, objFrigo);
 		if (puertaFrigo) {
 			clearTimeout(timeOutFrigo);
+			$(".dialog-background").hide();
 			electro.alarma(false);
 		}
 		puertaFrigo = false;
@@ -97,6 +98,7 @@ function changeCongDoorStatus(status){
 		if (objConge) toast("Puerta del congelador cerrada", 2000, objConge);
 		if (puertaConge) {
 			clearTimeout(timeOutConge);
+			$(".dialog-background").hide();
 			electro.alarma(false);
 		}
 		puertaConge = false;

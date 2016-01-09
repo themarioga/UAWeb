@@ -56,7 +56,6 @@
 		<script type="text/javascript" src="resources/electro.js"></script>
 		<script type="text/javascript" src="resources/functions.js"></script>
 		<script>
-		//ToDo: Alarma no pita
 		//ToDo: Estadisticas
 		//ToDo?: Bubble cambiar idioma
 		//¿ToDo?: Sistema celsius a farengheit
@@ -70,10 +69,12 @@
 			});
 			$(".dialog-close").click(function(event){
 				$(".dialog-background").hide();
+				electro.alarma(false);
 			});
 			$(".dialog-background").click(function(event){
 				if (!$(event.target).is('.dialog') && !$(event.target).parents(".dialog").is(".dialog")){
 					$(this).hide();
+					electro.alarma(false);
 				}
 			});
 			$( window ).resize(function() {
