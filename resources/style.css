@@ -156,6 +156,34 @@ footer{
 	height: 92%;
 	margin: 0 auto 30px;
 }
+.dialog-background{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(50, 50, 50, 0.5);
+}
+.dialog{
+	position: relative;
+	top: 40vh;
+	width: 30vw;
+	min-height: 10vh;
+	margin: auto;
+	background-color: white;
+	border-radius: 15px;
+	box-shadow: 1px, 1px, 5px, #000000;
+	padding: 5px;
+	padding-top: 5vh;
+	text-align:center;
+}
+.dialog-close{
+	position: absolute;
+	color: red;
+	right: 5px;
+	top: 5px;
+	cursor: pointer;
+}
 @media screen and (min-width: 801px){
 	.ico{
 		background-color: lightgrey;
@@ -232,6 +260,9 @@ footer{
 	.infotext{
 		margin-top: -3px;
 		font-size: 11px;
+	}
+	.dialog{
+		width: 60vw;
 	}
 }
 @media screen and (max-width: 799px){

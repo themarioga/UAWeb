@@ -42,7 +42,7 @@
 			<div class="foo-container">
 				<div class="button" id="frigo-btn" onclick="toggleFrigo()"><i class="material-icons b-large">invert_colors</i><div class="infotext">OFF</div></div>
 				<div class="button" id="conge-btn" onclick="toggleCong()"><i class="material-icons b-large">ac_unit</i><div class="infotext">OFF</div></div>
-				<div class="button" id="eco-btn" onclick="toggleEco()"><i class="material-icons b-large" style="">kitchen</i><div class="infotext">ECO OFF</div></div>
+				<div class="button" id="eco-btn" onclick="toggleEco()"><i class="material-icons b-large">kitchen</i><div class="infotext">ECO OFF</div></div>
 				<div class="button" id="frigotermo-btn" onclick="frigo_bubble()"><i class="material-icons b-large">invert_colors</i><div class="infotext">TEMP</div></div>
 				<div class="button" id="congetermo-btn" onclick="conge_bubble()"><i class="material-icons b-large">ac_unit</i><div class="infotext">TEMP</div></div>
 				<div class="button" id="lang-btn" onclick="toogleCooler()"><i class="material-icons b-large">language</i><div class="infotext">IDIOMA</div></div>
@@ -50,6 +50,7 @@
 		</footer>
 		<div id="bubble"><div id="frigotermo-range" class="range"></div><div id="congetermo-range" class="range"></div></div>
 		<div id="toast-container"></div>
+		<div class="dialog-background"><div class="dialog"><div class="dialog-close"><i class="material-icons medium">close</i></div><div id="dialog-content">Probando un textico guapo guapo</div></div></div>
 		<script type="text/javascript" src="resources/jquery.min.js"></script>
 		<script type="text/javascript" src="resources/nouislider.min.js"></script>
 		<script type="text/javascript" src="resources/electro.js"></script>
@@ -68,6 +69,14 @@
 				if(prevTermo != "" && !$(event.target).is('#bubble') && !$(event.target).parents("#bubble").is("#bubble") && !$(event.target).is('.button') && !$(event.target).parents(".button").is(".button")) {
 					$("#bubble").hide();
 					prevTermo = "";
+				}
+			});
+			$(".dialog-close").click(function(event){
+				$(".dialog-background").hide();
+			});
+			$(".dialog-background").click(function(event){
+				if (!$(event.target).is('.dialog') && !$(event.target).parents(".dialog").is(".dialog")){
+					$(this).hide();
 				}
 			});
 			$( window ).resize(function() {
